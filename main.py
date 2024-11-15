@@ -27,7 +27,7 @@ import hashlib
 from packaging import version
 
 GITHUB_REPO = "Raos48/encaminha_diligencia"
-VERSION = "1.0.0"  # Versão atual do seu software
+VERSION = "1.0.2"  # Versão atual do seu software
 
 def check_for_update():
     try:
