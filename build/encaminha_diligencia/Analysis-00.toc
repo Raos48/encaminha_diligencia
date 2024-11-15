@@ -322,21 +322,6 @@
   ('signal',
    'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\signal.py',
    'PYMODULE'),
-  ('logging',
-   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\logging\\__init__.py',
-   'PYMODULE'),
-  ('pickle',
-   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pickle.py',
-   'PYMODULE'),
-  ('pprint',
-   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pprint.py',
-   'PYMODULE'),
-  ('dataclasses',
-   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\dataclasses.py',
-   'PYMODULE'),
-  ('_compat_pickle',
-   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_compat_pickle.py',
-   'PYMODULE'),
   ('packaging.specifiers',
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\packaging\\specifiers.py',
@@ -364,6 +349,9 @@
   ('packaging._tokenizer',
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\packaging\\_tokenizer.py',
+   'PYMODULE'),
+  ('dataclasses',
+   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\dataclasses.py',
    'PYMODULE'),
   ('packaging._structures',
    'C:\\Users\\Ricardo\\OneDrive - '
@@ -413,6 +401,9 @@
   ('pkg_resources._vendor.pyparsing.results',
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\results.py',
+   'PYMODULE'),
+  ('pprint',
+   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pprint.py',
    'PYMODULE'),
   ('pkg_resources._vendor.pyparsing.helpers',
    'C:\\Users\\Ricardo\\OneDrive - '
@@ -2226,6 +2217,15 @@
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\chromedriver_autoinstaller\\utils.py',
    'PYMODULE'),
+  ('logging',
+   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\logging\\__init__.py',
+   'PYMODULE'),
+  ('pickle',
+   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pickle.py',
+   'PYMODULE'),
+  ('_compat_pickle',
+   'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_compat_pickle.py',
+   'PYMODULE'),
   ('datetime',
    'C:\\Users\\Ricardo\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\datetime.py',
    'PYMODULE'),
@@ -2327,21 +2327,13 @@
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\certifi\\cacert.pem',
    'DATA'),
-  ('selenium\\webdriver\\common\\mutation-listener.js',
+  ('selenium\\webdriver\\firefox\\webdriver_prefs.json',
    'C:\\Users\\Ricardo\\OneDrive - '
-   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\mutation-listener.js',
-   'DATA'),
-  ('selenium\\webdriver\\common\\linux\\selenium-manager',
-   'C:\\Users\\Ricardo\\OneDrive - '
-   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\linux\\selenium-manager',
+   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\firefox\\webdriver_prefs.json',
    'DATA'),
   ('selenium\\webdriver\\common\\macos\\selenium-manager',
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\macos\\selenium-manager',
-   'DATA'),
-  ('selenium\\py.typed',
-   'C:\\Users\\Ricardo\\OneDrive - '
-   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\py.typed',
    'DATA'),
   ('selenium\\webdriver\\remote\\getAttribute.js',
    'C:\\Users\\Ricardo\\OneDrive - '
@@ -2351,27 +2343,35 @@
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\devtools\\v85\\py.typed',
    'DATA'),
-  ('selenium\\webdriver\\remote\\findElements.js',
+  ('selenium\\webdriver\\common\\linux\\selenium-manager',
    'C:\\Users\\Ricardo\\OneDrive - '
-   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\remote\\findElements.js',
+   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\linux\\selenium-manager',
+   'DATA'),
+  ('selenium\\webdriver\\common\\devtools\\v128\\py.typed',
+   'C:\\Users\\Ricardo\\OneDrive - '
+   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\devtools\\v128\\py.typed',
    'DATA'),
   ('selenium\\webdriver\\remote\\isDisplayed.js',
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\remote\\isDisplayed.js',
    'DATA'),
+  ('selenium\\py.typed',
+   'C:\\Users\\Ricardo\\OneDrive - '
+   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\py.typed',
+   'DATA'),
   ('selenium\\webdriver\\common\\devtools\\v129\\py.typed',
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\devtools\\v129\\py.typed',
    'DATA'),
-  ('selenium\\webdriver\\firefox\\webdriver_prefs.json',
+  ('selenium\\webdriver\\common\\mutation-listener.js',
    'C:\\Users\\Ricardo\\OneDrive - '
-   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\firefox\\webdriver_prefs.json',
+   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\mutation-listener.js',
+   'DATA'),
+  ('selenium\\webdriver\\remote\\findElements.js',
+   'C:\\Users\\Ricardo\\OneDrive - '
+   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\remote\\findElements.js',
    'DATA'),
   ('selenium\\webdriver\\common\\devtools\\v130\\py.typed',
    'C:\\Users\\Ricardo\\OneDrive - '
    'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\devtools\\v130\\py.typed',
-   'DATA'),
-  ('selenium\\webdriver\\common\\devtools\\v128\\py.typed',
-   'C:\\Users\\Ricardo\\OneDrive - '
-   'INSS\\PYTHON\\encaminha_junta_diligencia\\venv\\Lib\\site-packages\\selenium\\webdriver\\common\\devtools\\v128\\py.typed',
    'DATA')])
