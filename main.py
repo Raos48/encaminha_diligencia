@@ -31,7 +31,8 @@ VERSION = "1.0.2"  # Versão atual do seu software
 
 def check_for_update():
     try:
-        # Verifica a última release no GitHub
+        print(f"Robô - Encaminha Diligência versão atual: {VERSION}")
+        print("Verificando a última versão...")
         api_url = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
         response = requests.get(api_url)
         if response.status_code == 200:
@@ -165,8 +166,8 @@ while True:
         
                 
         if len(driver.find_elements(By.ID, "formProcesso:encaminharProcesso")) == 0:
-            situacao = "Não permite encaminhamento, verificar se o processo encontra-se arquivado ou no CRPS."            
-            print(situacao)
+            situacao = "Não permite encaminhamento, verificar se o processo encontra-se arquivado ou no CRPS."
+            print(Fore.RED + situacao + Style.RESET_ALL)
             worksheet.cell(row=linha, column=3).value = f"ERRO:{situacao}"
             workbook.save(caminho_arquivo)
             linha += 1
