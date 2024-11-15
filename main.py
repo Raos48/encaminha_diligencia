@@ -5,6 +5,8 @@ import time
 import traceback
 import warnings
 from datetime import date
+import logging
+import sys
 
 import chromedriver_autoinstaller
 import urllib3
@@ -18,12 +20,81 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import openpyxl
+import requests
+import sys
+import os
+import hashlib
+from packaging import version
+
+GITHUB_REPO = "Raos48/encaminha_diligencia"
+VERSION = "1.0.0"  # Versão atual do seu software
+
+def check_for_update():
+    try:
+        # Verifica a última release no GitHub
+        api_url = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            latest_version = response.json()['tag_name'].replace('v', '')
+            
+            if version.parse(latest_version) > version.parse(VERSION):
+                print(f"Nova versão disponível: {latest_version}")
+                print(f"Sua versão atual: {VERSION}")
+                
+                update = input("Deseja atualizar? (s/n): ").lower()
+                if update == 's':
+                    # URL do arquivo .exe na última release
+                    download_url = response.json()['assets'][0]['browser_download_url']
+                    
+                    # Download do novo executável
+                    print("Baixando nova versão...")
+                    new_exe = requests.get(download_url)
+                    
+                    # Nome do executável atual
+                    current_exe = sys.executable
+                    new_exe_path = current_exe + ".new"
+                    
+                    # Salva o novo executável
+                    with open(new_exe_path, 'wb') as f:
+                        f.write(new_exe.content)
+                    
+                    # Cria um script batch para substituir o executável
+                    batch_script = f"""
+                    @echo off
+                    timeout /t 1 /nobreak > nul
+                    del "{current_exe}"
+                    move "{new_exe_path}" "{current_exe}"
+                    start "" "{current_exe}"
+                    del "%~f0"
+                    """.strip()
+                    
+                    with open('update.bat', 'w') as f:
+                        f.write(batch_script)
+                    
+                    print("Atualizando... O programa será reiniciado.")
+                    os.system('start update.bat')
+                    sys.exit()
+                
+                return False
+            
+            return True
+    except Exception as e:
+        print(f"Erro ao verificar atualizações: {e}")
+        return True
+
+if not check_for_update():
+    sys.exit()
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 urllib3.disable_warnings()
 chromedriver_autoinstaller.install()
+
+logging.getLogger('urllib3').setLevel(logging.CRITICAL) # Suprime warnings do urllib3
+logging.basicConfig(stream=sys.stdout, level=logging.INFO) # Define o nível de logging global para INFO
+
 options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
+options.add_experimental_option('excludeSwitches', ['enable-logging'])  # Suprime mensagens do Chrome
 
 init()
 
@@ -38,6 +109,26 @@ workbook = openpyxl.load_workbook(caminho_arquivo)
 worksheet = workbook['Plan1']
 
 linha = 2
+
+
+
+
+
+print(Fore.YELLOW + "Iniciando Automação.." + Style.RESET_ALL)
+print(Fore.YELLOW + "Pós a conclusão do processo de Login pressione ENTER" + Style.RESET_ALL)
+
+driver.get("https://esisrec.inss.gov.br/esisrec/pages/painel_de_entrada/consultar_painel_de_entrada.xhtml")
+
+while True:
+    try:
+        # Tenta encontrar o elemento (sem tempo limite)
+        driver.find_element(By.XPATH, "/html/body/div[3]/div/fieldset/div/form/div[2]/div/div/div[1]/h4")
+        print(Fore.BLUE + "Continuando..." + Style.RESET_ALL)
+        break  # Sai do loop se o elemento for encontrado
+    except NoSuchElementException:
+        print(Fore.YELLOW + "Aguardando login..." + Style.RESET_ALL)
+        time.sleep(5)  # Aguarda 5 segundos antes de tentar novamente
+
 
 while True:
     try:

@@ -1,0 +1,2 @@
+pyinstaller --onefile --name encaminha_diligencia --hidden-import requests --hidden-import packaging main.py
+pyinstaller --onefile --name encaminha_diligencia main.py
