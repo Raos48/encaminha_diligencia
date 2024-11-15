@@ -1,0 +1,12 @@
+# Ignorar arquivos específicos
+protocolos.xlsx
+Encaminha_diligencia.ipynb
+
+# Ignorar diretórios
+venv/
+.ipynb_checkpoints/
+
+# Ignorar arquivos de sistema comuns
+*.pyc
+__pycache__/
+.DS_Store
