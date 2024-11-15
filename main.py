@@ -123,7 +123,7 @@ while True:
     try:
         # Tenta encontrar o elemento (sem tempo limite)
         driver.find_element(By.XPATH, "/html/body/div[3]/div/fieldset/div/form/div[2]/div/div/div[1]/h4")
-        print(Fore.BLUE + "Continuando..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Continuando..." + Style.RESET_ALL)
         break  # Sai do loop se o elemento for encontrado
     except NoSuchElementException:
         print(Fore.YELLOW + "Aguardando login..." + Style.RESET_ALL)
@@ -151,7 +151,7 @@ while True:
         driver.get("https://esisrec.inss.gov.br/esisrec/pages/painel_de_entrada/consultar_painel_de_entrada.xhtml")
         ActionChains(driver).send_keys(Keys.HOME).perform()
         
-        print(Fore.BLUE + "Busca Processo..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Busca Processo..." + Style.RESET_ALL)
         campo_busca = driver.find_element(By.ID, "formBuscaRapida:buscaRapida")
         campo_busca.clear()
         campo_busca.send_keys(protocolo)
@@ -163,18 +163,28 @@ while True:
         unidade = driver.find_element(By.ID, "formProcesso:orgaoAtual").text
         driver.execute_script("window.scrollTo(0, 1000)")
         
-        print(Fore.BLUE + "Clicar em Analisar..." + Style.RESET_ALL)
+                
+        if len(driver.find_elements(By.ID, "formProcesso:encaminharProcesso")) == 0:
+            situacao = "Não permite encaminhamento, verificar se o processo encontra-se arquivado ou no CRPS."            
+            print(situacao)
+            worksheet.cell(row=linha, column=3).value = f"ERRO:{situacao}"
+            workbook.save(caminho_arquivo)
+            linha += 1
+            continue
+            
+        
+        print(Fore.CYAN + "Clicar em Analisar..." + Style.RESET_ALL)
         element = driver.find_element(By.ID, "formProcesso:analisarAnexarDocumentos")
         driver.execute_script("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
         time.sleep(1)
         element.click()
         time.sleep(2)
         
-        print(Fore.BLUE + "Lançar Evento..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Lançar Evento..." + Style.RESET_ALL)
         driver.find_element(By.XPATH, "//span[@id='iptEventoLancado']/button").click()
         time.sleep(1)
         
-        print(Fore.BLUE + "Selecionar Evento Diligencia não cumprida..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Selecionar Evento Diligencia não cumprida..." + Style.RESET_ALL)
         driver.find_element(By.XPATH, "//span[@id='iptEventoLancado_panel']/ul/li[28]").click()
         
         data_formatada = date.today().strftime("%d/%m/%Y")
@@ -186,11 +196,11 @@ while True:
         driver.find_element(By.ID, "anexar_docs:tipoDocDigitarDocumentos_label").click()                  
         time.sleep(1)
         
-        print(Fore.BLUE + "Selecionar Documento tipo DESPACHO..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Selecionar Documento tipo DESPACHO..." + Style.RESET_ALL)
         driver.find_element(By.ID, "anexar_docs:tipoDocDigitarDocumentos_40").click()
         time.sleep(5)
         
-        print(Fore.BLUE + "Redigir Despacho..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Redigir Despacho..." + Style.RESET_ALL)
         editor = driver.find_element(By.XPATH, "//div[@id='anexar_docs:textEditor_editor']/div")
         editor.clear()
         texto_despacho = (
@@ -201,16 +211,16 @@ while True:
         editor.send_keys(texto_despacho)
         time.sleep(1)
         
-        print(Fore.BLUE + "Anexar Documento..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Anexar Documento..." + Style.RESET_ALL)
         driver.find_element(By.ID, 'anexar_docs:digitar_doc_anexar').click()
         time.sleep(1)
         
         driver.execute_script("window.scrollTo(0, 1000)")
-        print(Fore.BLUE + "Movimentar em Bloco..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Movimentar em Bloco..." + Style.RESET_ALL)
         driver.find_element(By.ID, 'btnMovimentarEmBloco').click()
         time.sleep(1)
         
-        print(Fore.BLUE + "Aguardar retorno..." + Style.RESET_ALL)
+        print(Fore.CYAN + "Aguardar retorno..." + Style.RESET_ALL)
         WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[3]/div/div[2]/div/ul/li/span")))
         time.sleep(1)
         
