@@ -25,9 +25,12 @@ import sys
 import os
 import hashlib
 from packaging import version
+import shutil
 
 GITHUB_REPO = "Raos48/encaminha_diligencia"
-VERSION = "1.0.4"  # Versão atual do seu software
+VERSION = "1.0.5"  # Versão atual do seu software
+
+
 
 def check_for_update():
     try:
@@ -43,36 +46,50 @@ def check_for_update():
                 print(f"Sua versão atual: {VERSION}")
                 update = input(f"Deseja atualizar para a versão {latest_version}? (s/n):").lower()
                 if update == 's':
-                    # URL do arquivo .exe na última release
                     download_url = response.json()['assets'][0]['browser_download_url']
                     
-                    # Download do novo executável
                     print("Baixando nova versão...")
                     new_exe = requests.get(download_url)
                     
-                    # Nome do executável atual
                     current_exe = sys.executable
                     new_exe_path = current_exe + ".new"
                     
-                    # Salva o novo executável
                     with open(new_exe_path, 'wb') as f:
                         f.write(new_exe.content)
                     
-                    # Cria um script batch para substituir o executável
-                    batch_script = f"""
-                    @echo off
-                    timeout /t 5 /nobreak > nul
-                    del "{current_exe}"
-                    move "{new_exe_path}" "{current_exe}"
-                    start "" "{current_exe}"
-                    del "%~f0"
-                    """.strip()
-                    
-                    with open('update.bat', 'w') as f:
+                    # Criar o script em lote simplificado
+                    batch_script = f"""@echo off
+echo Atualizando o programa...
+timeout /t 3 /nobreak > nul
+
+:wait_for_exit
+tasklist /FI "IMAGENAME eq {os.path.basename(current_exe)}" 2>NUL | find /I "{os.path.basename(current_exe)}" >NUL
+if not errorlevel 1 (
+    echo O programa ainda está em execução. Aguardando...
+    timeout /t 2 /nobreak > nul
+    goto :wait_for_exit
+)
+
+echo Substituindo o executável antigo pelo novo...
+move /Y "{new_exe_path}" "{current_exe}"
+if %ERRORLEVEL% neq 0 (
+    echo Falha ao mover o novo executável.
+    pause
+    exit /b
+)
+
+echo Atualização concluída com sucesso.
+echo Por favor, inicie a nova versão manualmente.
+pause
+exit
+"""
+
+                    # Escrever o script em lote sem indentações e com codificação cp1252
+                    with open('update.bat', 'w', encoding='cp1252') as f:
                         f.write(batch_script)
                     
-                    print("Atualizando... O programa será reiniciado.")
-                    os.system('start update.bat')
+                    print("Atualizando... O programa será encerrado.")
+                    os.system('start "" update.bat')
                     sys.exit()
                 
                 return False
@@ -82,8 +99,17 @@ def check_for_update():
         print(f"Erro ao verificar atualizações: {e}")
         return True
 
+# Deletar o update.bat se ele existir no início do script
+if os.path.exists('update.bat'):
+    try:
+        os.remove('update.bat')
+    except Exception:
+        pass  # Ignora erros se o arquivo estiver em uso
+
 if not check_for_update():
     sys.exit()
+
+
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 urllib3.disable_warnings()
