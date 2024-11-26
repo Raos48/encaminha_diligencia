@@ -7,7 +7,31 @@ import warnings
 from datetime import date
 import logging
 import sys
+import subprocess
 
+
+if __name__ == "__main__":
+    
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    atualizador_path = os.path.join(script_dir, "atualizador", "atualizador.exe")
+    
+    if os.path.exists(atualizador_path):
+        try:
+            print(f"Executando atualizador de: {atualizador_path}")
+            subprocess.run([atualizador_path], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Erro ao executar atualizador: {e}")
+        except Exception as e:
+            print(f"Erro inesperado ao executar atualizador: {e}")
+    else:
+        print(f"Atualizador não encontrado em: {atualizador_path}")
+        print("O programa continuará sem verificar atualizações.")
+
+
+GITHUB_REPO = "Raos48/encaminha_diligencia"
+VERSION = "1.0.7"  # Versão atual do seu software
+
+# Resto das importações
 import chromedriver_autoinstaller
 import urllib3
 from colorama import init, Fore, Back, Style
@@ -21,94 +45,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import openpyxl
 import requests
-import sys
-import os
 import hashlib
 from packaging import version
 import shutil
-
-GITHUB_REPO = "Raos48/encaminha_diligencia"
-VERSION = "1.0.6"  # Versão atual do seu software
-
-
-
-def check_for_update():
-    try:
-        print(f"Robô - Encaminha Diligência versão atual: {VERSION}")
-        print("Verificando a última versão...")
-        api_url = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
-        response = requests.get(api_url, timeout=10)
-        if response.status_code == 200:
-            latest_version = response.json()['tag_name'].replace('v', '')
-            
-            if version.parse(latest_version) > version.parse(VERSION):
-                print(f"Nova versão disponível: {latest_version}")
-                print(f"Sua versão atual: {VERSION}")
-                update = input(f"Deseja atualizar para a versão {latest_version}? (s/n):").lower()
-                if update == 's':
-                    download_url = response.json()['assets'][0]['browser_download_url']
-                    
-                    print("Baixando nova versão...")
-                    new_exe = requests.get(download_url)
-                    
-                    current_exe = sys.executable
-                    new_exe_path = current_exe + ".new"
-                    
-                    with open(new_exe_path, 'wb') as f:
-                        f.write(new_exe.content)
-                    
-                    # Criar o script em lote simplificado
-                    batch_script = f"""@echo off
-echo Atualizando o programa...
-timeout /t 3 /nobreak > nul
-
-:wait_for_exit
-tasklist /FI "IMAGENAME eq {os.path.basename(current_exe)}" 2>NUL | find /I "{os.path.basename(current_exe)}" >NUL
-if not errorlevel 1 (
-    echo O programa ainda está em execução. Aguardando...
-    timeout /t 2 /nobreak > nul
-    goto :wait_for_exit
-)
-
-echo Substituindo o executável antigo pelo novo...
-move /Y "{new_exe_path}" "{current_exe}"
-if %ERRORLEVEL% neq 0 (
-    echo Falha ao mover o novo executável.
-    pause
-    exit /b
-)
-
-echo Atualização concluída com sucesso.
-echo Por favor, inicie a nova versão manualmente.
-pause
-exit
-"""
-
-                    # Escrever o script em lote sem indentações e com codificação cp1252
-                    with open('update.bat', 'w', encoding='cp1252') as f:
-                        f.write(batch_script)
-                    
-                    print("Atualizando... O programa será encerrado.")
-                    os.system('start "" update.bat')
-                    sys.exit()
-                
-                return False
-            
-            return True
-    except Exception as e:
-        print(f"Erro ao verificar atualizações: {e}")
-        return True
-
-# Deletar o update.bat se ele existir no início do script
-if os.path.exists('update.bat'):
-    try:
-        os.remove('update.bat')
-    except Exception:
-        pass  # Ignora erros se o arquivo estiver em uso
-
-if not check_for_update():
-    sys.exit()
-
 
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -253,8 +192,8 @@ try:
             time.sleep(1)
             
             driver.execute_script("window.scrollTo(0, 1000)")
-            print(Fore.CYAN + "Movimentar em Bloco..." + Style.RESET_ALL)
-            driver.find_element(By.ID, 'btnMovimentarEmBloco').click()
+            print(Fore.CYAN + "Movimentar em Bloco..." + Style.RESET_ALL)            
+            driver.execute_script("document.getElementById('btnMovimentarEmBloco').click();")
             time.sleep(1)
             
             print(Fore.CYAN + "Aguardar retorno..." + Style.RESET_ALL)
@@ -264,7 +203,7 @@ try:
             mensagem_retorno = driver.find_element(By.XPATH, "/html/body/div[3]/div/div[2]/div/ul/li/span").text
             if mensagem_retorno != "Processo movimentado com sucesso.":
                 print(Fore.YELLOW + "Retorno falhou, tentando movimentar novamente..." + Style.RESET_ALL)
-                driver.find_element(By.ID, 'btnMovimentarEmBloco').click()
+                driver.execute_script("document.getElementById('btnMovimentarEmBloco').click();")
             time.sleep(1)
             
             print(Fore.GREEN + "Encaminhamento bem sucedido, salvando informações na planilha..." + Style.RESET_ALL)

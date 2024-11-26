@@ -38,7 +38,7 @@ includes = [
 
 setup(
     name="encaminha_diligencia",
-    version="1.0.6",
+    version="1.0.7",
     description="Robô - Encaminha Diligência",
     options={
         "build_exe": {
