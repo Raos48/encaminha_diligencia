@@ -2,6 +2,9 @@ pyinstaller --onefile --name encaminha_diligencia --hidden-import requests --hid
 pyinstaller --onefile --name encaminha_diligencia main.py
 
 
+CX_FREEZE:
+python setup.py build
+
 alterar VERSION = "1.0.3"
 
 git add .

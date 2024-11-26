@@ -28,7 +28,7 @@ from packaging import version
 import shutil
 
 GITHUB_REPO = "Raos48/encaminha_diligencia"
-VERSION = "1.0.5"  # Versão atual do seu software
+VERSION = "1.0.6"  # Versão atual do seu software
 
 
 
@@ -138,7 +138,7 @@ linha = 2
 
 try:
     print(Fore.YELLOW + "Iniciando Automação.." + Style.RESET_ALL)
-    print(Fore.YELLOW + "Pós a conclusão do processo de Login pressione ENTER" + Style.RESET_ALL)
+    print(Fore.YELLOW + "Após a conclusão do processo de Login pressione ENTER" + Style.RESET_ALL)
 
     driver.get("https://esisrec.inss.gov.br/esisrec/pages/painel_de_entrada/consultar_painel_de_entrada.xhtml")
 
@@ -202,6 +202,9 @@ try:
             time.sleep(2)
             
             print(Fore.CYAN + "Lançar Evento..." + Style.RESET_ALL)
+            element = driver.find_element(By.XPATH, "//span[@id='iptEventoLancado']/button")
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
+            time.sleep(1)
             driver.find_element(By.XPATH, "//span[@id='iptEventoLancado']/button").click()
             time.sleep(1)
             
@@ -211,6 +214,11 @@ try:
             data_formatada = date.today().strftime("%d/%m/%Y")
             driver.execute_script("scroll(0,500)")
             time.sleep(1)
+            
+            
+            element = driver.find_element(By.XPATH, "/html/body/div[3]/div/form[1]/span/div[2]/div/div/div[3]/div[1]/div/div[3]/div/div/ul/li[2]/a")
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
+            
             
             driver.find_element(By.LINK_TEXT, "Digitar um Documento").click()
             time.sleep(1)
@@ -222,6 +230,12 @@ try:
             time.sleep(5)
             
             print(Fore.CYAN + "Redigir Despacho..." + Style.RESET_ALL)
+            element = driver.find_element(By.XPATH, "/html/body/div[3]/div/form[1]/span/div[2]/div/div/div[3]/div[1]/div/div[3]/div/div/div/div[2]/div[2]/div/div[2]/div[1]/p[5]")
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
+            
+            
+            
+            
             editor = driver.find_element(By.XPATH, "//div[@id='anexar_docs:textEditor_editor']/div")
             editor.clear()
             texto_despacho = (
@@ -233,6 +247,8 @@ try:
             time.sleep(1)
             
             print(Fore.CYAN + "Anexar Documento..." + Style.RESET_ALL)
+            element = driver.find_element(By.XPATH, "/html/body/div[3]/div/form[1]/span/div[2]/div/div/div[3]/div[1]/div/div[3]/div/div/div/div[2]/div[3]/button[1]/span")
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
             driver.find_element(By.ID, 'anexar_docs:digitar_doc_anexar').click()
             time.sleep(1)
             
