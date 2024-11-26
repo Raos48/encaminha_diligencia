@@ -10,10 +10,25 @@ import sys
 import subprocess
 
 
+
+
+def get_application_path():
+    if getattr(sys, 'frozen', False):
+        # Se for um executável compilado
+        return os.path.dirname(sys.executable)
+    else:
+        # Se for um script Python
+        return os.path.dirname(os.path.abspath(__file__))
+
+# Verificar e executar o atualizador primeiro
 if __name__ == "__main__":
+    # Obter o diretório do aplicativo
+    app_dir = get_application_path()
     
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    atualizador_path = os.path.join(script_dir, "atualizador", "atualizador.exe")
+    # Construir o caminho para o atualizador
+    atualizador_path = os.path.join(app_dir, "atualizador", "atualizador.exe")
+    
+    print(f"Procurando atualizador em: {atualizador_path}")
     
     if os.path.exists(atualizador_path):
         try:
@@ -29,7 +44,7 @@ if __name__ == "__main__":
 
 
 GITHUB_REPO = "Raos48/encaminha_diligencia"
-VERSION = "1.0.7"  # Versão atual do seu software
+VERSION = "1.0.8"  # Versão atual do seu software
 
 # Resto das importações
 import chromedriver_autoinstaller

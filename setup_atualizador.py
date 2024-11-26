@@ -6,7 +6,7 @@ setup(
     description="Atualizador Automático",
     options={
         "build_exe": {
-            "packages": ["os", "sys", "requests", "packaging", "json", "subprocess", "logging"],
+            "packages": ["os", "sys", "requests", "packaging", "json", "subprocess", "logging", "psutil"],
             "includes": ["packaging.version", "packaging.specifiers"],
             "include_msvcr": True,
             "optimize": 2,

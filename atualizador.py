@@ -7,6 +7,7 @@ import json
 import subprocess
 import logging
 from datetime import datetime
+import psutil
 
 # Configuração de logging
 logging.basicConfig(
@@ -23,9 +24,9 @@ def get_current_version():
     try:
         with open(CONFIG_FILE, 'r') as f:
             config = json.load(f)
-            return config.get('version', '1.0.0')
+            return config.get('version', '1.0.8')
     except:
-        return '1.0.0'
+        return '1.0.8'
 
 def save_current_version(version_str):
     with open(CONFIG_FILE, 'w') as f:
