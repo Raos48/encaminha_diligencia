@@ -1,0 +1,17 @@
+2024-11-26 21:28:59,752 - ERROR - Erro ao ler versão atual: [Errno 2] No such file or directory: 'C:\\Users\\Ricardo\\OneDrive - INSS\\PYTHON\\encaminha_junta_diligencia\\build\\encaminha\\version.json'
+2024-11-26 21:28:59,760 - DEBUG - Starting new HTTPS connection (1): api.github.com:443
+2024-11-26 21:29:00,062 - DEBUG - https://api.github.com:443 "GET /repos/Raos48/encaminha_diligencia/releases/latest HTTP/11" 200 764
+2024-11-26 21:29:00,068 - DEBUG - Starting new HTTPS connection (1): github.com:443
+2024-11-26 21:29:00,363 - DEBUG - https://github.com:443 "GET /Raos48/encaminha_diligencia/releases/download/v1.0.8/encaminha_diligencia.exe HTTP/11" 302 0
+2024-11-26 21:29:00,367 - DEBUG - Starting new HTTPS connection (1): objects.githubusercontent.com:443
+2024-11-26 21:29:01,012 - DEBUG - https://objects.githubusercontent.com:443 "GET /github-production-release-asset-2e65be/889095689/161f5356-94bf-40fa-8f38-0a8eb1739a34?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241127%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241127T002920Z&X-Amz-Expires=300&X-Amz-Signature=f727ead3b4ddc45406c562ee1236374899483ed6bf7c6253f8ccd286923e4a6d&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dencaminha_diligencia.exe&response-content-type=application%2Foctet-stream HTTP/11" 200 17408
+2024-11-26 21:29:01,122 - INFO - Download concluído: C:\Users\Ricardo\OneDrive - INSS\PYTHON\encaminha_junta_diligencia\build\encaminha\updater\encaminha_diligencia.exe.new
+2024-11-26 21:29:01,781 - INFO - Arquivo atualizado movido para: C:\Users\Ricardo\OneDrive - INSS\PYTHON\encaminha_junta_diligencia\build\encaminha\encaminha_diligencia.exe
+2024-11-26 21:29:58,249 - DEBUG - Starting new HTTPS connection (1): api.github.com:443
+2024-11-26 21:29:58,496 - DEBUG - https://api.github.com:443 "GET /repos/Raos48/encaminha_diligencia/releases/latest HTTP/11" 200 764
+2024-11-26 21:29:58,505 - DEBUG - Starting new HTTPS connection (1): github.com:443
+2024-11-26 21:29:58,575 - DEBUG - https://github.com:443 "GET /Raos48/encaminha_diligencia/releases/download/v1.0.8/encaminha_diligencia.exe HTTP/11" 302 0
+2024-11-26 21:29:58,579 - DEBUG - Starting new HTTPS connection (1): objects.githubusercontent.com:443
+2024-11-26 21:29:59,194 - DEBUG - https://objects.githubusercontent.com:443 "GET /github-production-release-asset-2e65be/889095689/161f5356-94bf-40fa-8f38-0a8eb1739a34?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241127%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241127T002920Z&X-Amz-Expires=300&X-Amz-Signature=f727ead3b4ddc45406c562ee1236374899483ed6bf7c6253f8ccd286923e4a6d&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dencaminha_diligencia.exe&response-content-type=application%2Foctet-stream HTTP/11" 200 17408
+2024-11-26 21:29:59,221 - INFO - Download concluído: C:\Users\Ricardo\OneDrive - INSS\PYTHON\encaminha_junta_diligencia\build\encaminha\updater\encaminha_diligencia.exe.new
+2024-11-26 21:29:59,843 - INFO - Arquivo atualizado movido para: C:\Users\Ricardo\OneDrive - INSS\PYTHON\encaminha_junta_diligencia\build\encaminha\encaminha_diligencia.exe
